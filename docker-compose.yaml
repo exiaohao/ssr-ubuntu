@@ -1,10 +1,13 @@
 version: '3'
 services:
   ssr-backend:
-    environment:
-      LISTEN_PORT: 12345
-      PASSWORD: exiaohao
-      ENCRYPT_METHOD: aes-256-cfb
-      OBFS_METHOD: http_simple
-      TIMEOUT: 120
     build: .
+    command:
+      - python
+      - ssr/shadowsocks/server.py
+      - -c
+      - /etc/shadowsocksr.json
+    volumes:
+      - ./shadowsocksr.json:/etc/shadowsocksr.json
+    ports:
+      - 12345:12345

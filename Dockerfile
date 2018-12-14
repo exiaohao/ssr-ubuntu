@@ -26,4 +26,4 @@ RUN rm -rf /opt/libsodium-1.0.12
 WORKDIR /
 COPY ./shadowsocksr /ssr
 
-CMD python ssr/shadowsocks/server.py -p $LISTEN_PORT -k $PASSWORD -m $ENCRYPT_METHOD -o $OBFS_METHOD -t $TIMEOUT --fast-open
+ENTRYPOINT [ "python", "/ssr/shadowsocks/server.py", "-c", "/etc/shadowsocksr.json" ]
